@@ -1,0 +1,13 @@
+#header{
+    background: #ffcdd2;
+    color: #212121;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited{
+    color: #212121;
+}
+
+.module caption, a.section:link{
+    background: #ffcdd2;
+    color: #212121;
+}

@@ -1,0 +1,14 @@
+{% load news_tags %}
+
+{% comment %}
+<div class="list-group">
+    {% get_categ as categories %}
+    {% for elcat in categories %}
+    <a href="{% url 'category' elcat.pk %}" class="list-group-item list-group-item-action">{{ elcat.title }} </a>
+    {% endfor %}
+</div>
+
+<br>
+{% endcomment %}
+
+{% g_categ %}

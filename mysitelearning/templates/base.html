@@ -1,0 +1,58 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}Новости со всего мира{% endblock %}</title>
+</head>
+<body>
+
+{% include 'inc/_nav.html' %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            {% block sidebar %} {% endblock %}
+        </div>
+        <div class="col-md-9">
+            {% block content %}{% endblock %}
+            {% if page_obj.paginator.num_pages > 1 %}
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        {% if page_obj.has_previous %}
+                            <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        {% endif %}
+                    </li>
+                    {% for p in page_obj.paginator.page_range %}
+                        {% if page_obj.number == p %}
+                            <li class="page-item active"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+                        {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                            <li class="page-item"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="page-item">
+                        {% if page_obj.has_next %}
+                            <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

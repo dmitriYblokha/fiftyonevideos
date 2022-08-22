@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ one_news.title }}{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ one_news.category.get_absolute_url }}" class="text-dark" style="text-decoration: none;">{{ one_news.category }}</a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                {% if one_news.photo %}
+                <img src="{{ one_news.photo.url }}" alt="" width="300" height="250">
+                {% else %}
+                <img src="https://picsum.photos/id/1060/200/300/" alt="" width="300" height="250">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <h5 class="card-title">{{ one_news.title }}</h5>
+                <p class="card-text">{{ one_news.content }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ one_news.created_at|date:"H:i d-m-Y" }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<div class="list-group">
+    {% for elcat in categories %}
+    <a href="{{ elcat.get_absolute_url }}" class="list-group-item list-group-item-action">{{ elcat.title }} <span class="badge bg-primary rounded-pill">{{ elcat.cnt }}</span></a>
+    {% endfor %}
+</div>
